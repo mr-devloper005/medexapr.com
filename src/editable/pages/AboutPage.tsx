@@ -6,39 +6,49 @@ import { EditableSiteShell } from '@/editable/shell/EditableSiteShell'
 export default function AboutPage() {
   return (
     <EditableSiteShell>
-      <main className="bg-[#f7f4ef] text-[#111]">
-        <section className="border-b border-black bg-[#c92f2f] text-white">
-          <div className="mx-auto max-w-[var(--editable-container)] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-            <p className="text-xs font-black uppercase tracking-[0.28em]">{pagesContent.about.badge}</p>
-            <h1 className="editorial-brand mt-5 max-w-5xl text-6xl font-black leading-[0.92] tracking-[-0.055em] sm:text-8xl">
-              Independent media, built for clear stories.
+      <main className="bg-[#fffaf2] text-[#1f1c1a]">
+        <section className="bg-[var(--slot4-dark-bg)] text-white">
+          <div className="mx-auto max-w-[1180px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <p className="text-xs uppercase tracking-[0.28em] text-[var(--slot4-accent-soft)]">{pagesContent.about.badge}</p>
+            <h1 className="editorial-serif mt-5 max-w-5xl text-5xl leading-[0.96] tracking-[-0.05em] sm:text-7xl lg:text-[5.4rem]">
+              A clearer, more refined way to present public stories and business visibility.
             </h1>
+            <p className="mt-6 max-w-3xl text-lg leading-9 text-white/75">{pagesContent.about.description}</p>
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-[var(--editable-container)] border-x border-black bg-white lg:grid-cols-[1.45fr_0.55fr]">
-          <article className="border-b border-black p-7 sm:p-10 lg:border-b-0 lg:border-r lg:p-16">
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#c92f2f]">About {SITE_CONFIG.name}</p>
-            <p className="editorial-serif mt-6 text-3xl font-bold leading-[1.25] sm:text-4xl">{pagesContent.about.description}</p>
-            <div className="article-content mt-10 space-y-6">
-              {pagesContent.about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            </div>
-          </article>
-          <aside className="grid bg-[#f7f4ef]">
-            {pagesContent.about.values.map((value, index) => (
-              <div key={value.title} className="border-b border-black p-7 last:border-b-0 sm:p-9">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#c92f2f]">0{index + 1}</p>
-                <h2 className="editorial-serif mt-4 text-3xl font-black leading-tight">{value.title}</h2>
-                <p className="mt-4 text-sm leading-7 text-black/65">{value.description}</p>
+        <section className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+            <article className="rounded-[0.45rem] border border-[color:rgba(138,95,65,0.18)] bg-white p-7 shadow-sm sm:p-10 lg:p-12">
+              <p className="text-xs uppercase tracking-[0.22em] text-[var(--slot4-accent)]">About {SITE_CONFIG.name}</p>
+              <h2 className="editorial-serif mt-4 text-4xl leading-tight tracking-[-0.04em] text-[var(--slot4-dark-bg)] sm:text-5xl">
+                {pagesContent.about.title}
+              </h2>
+              <div className="article-content mt-8 space-y-6">
+                {pagesContent.about.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
-            ))}
-          </aside>
+            </article>
+
+            <aside className="grid gap-4">
+              {pagesContent.about.values.map((value, index) => (
+                <div key={value.title} className="rounded-[0.45rem] border border-[color:rgba(138,95,65,0.18)] bg-[#f8f1e5] p-6 shadow-sm sm:p-7">
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-[var(--slot4-accent)]">0{index + 1}</p>
+                  <h2 className="editorial-serif mt-3 text-3xl leading-tight tracking-[-0.03em] text-[var(--slot4-dark-bg)]">{value.title}</h2>
+                  <p className="mt-4 text-sm leading-7 text-black/68">{value.description}</p>
+                </div>
+              ))}
+            </aside>
+          </div>
         </section>
 
-        <section className="border-y border-black bg-[#171717] text-white">
-          <div className="mx-auto flex max-w-[var(--editable-container)] flex-col gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-            <h2 className="editorial-brand max-w-3xl text-4xl font-black leading-none sm:text-5xl">Read the stories shaping the conversation.</h2>
-            <Link href="/search" className="inline-flex w-fit bg-[#c92f2f] px-6 py-4 text-xs font-black uppercase tracking-[0.18em]">Explore the archive</Link>
+        <section className="border-y border-[color:rgba(138,95,65,0.14)] bg-[#f8f1e5]">
+          <div className="mx-auto flex max-w-[1180px] flex-col gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+            <h2 className="editorial-serif max-w-3xl text-4xl leading-[1.02] tracking-[-0.04em] text-[var(--slot4-dark-bg)] sm:text-5xl">
+              Read the stories shaping the conversation.
+            </h2>
+            <Link href="/search" className="inline-flex w-fit rounded-[0.35rem] bg-[var(--slot4-dark-bg)] px-6 py-4 text-xs uppercase tracking-[0.18em] text-white transition hover:bg-[var(--slot4-accent-fill)]">
+              Explore the archive
+            </Link>
           </div>
         </section>
       </main>
