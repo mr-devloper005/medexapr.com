@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { globalContent } from '@/editable/content/global.content'
 import { useEditableLocalAuthSession } from '@/editable/components/EditableLocalAuthForms'
@@ -11,34 +10,58 @@ export function EditableFooter() {
   const { session, logout } = useEditableLocalAuthSession()
 
   return (
-    <footer className="border-t-8 border-[var(--slot4-accent)] bg-black text-white">
-      <div className="mx-auto max-w-[1440px] px-4 py-14 sm:px-6 lg:px-10 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_.7fr_.7fr]">
-          <div>
-            <Link href="/" className="editorial-brand text-5xl font-black text-[var(--slot4-accent)] sm:text-6xl">{SITE_CONFIG.name}</Link>
-            <p className="mt-6 max-w-xl text-sm leading-7 text-white/62">{globalContent.footer?.description || SITE_CONFIG.description}</p>
-            <form action="/signup" className="mt-8 flex max-w-xl border border-white/35">
-              <input name="email" type="email" placeholder="Email for newsroom updates" className="min-w-0 flex-1 bg-transparent px-4 py-4 text-sm outline-none placeholder:text-white/40" />
-              <button className="bg-[var(--slot4-accent)] px-5 text-xs font-black uppercase tracking-[.14em]">Subscribe</button>
-            </form>
+    <footer className="mt-0 bg-[var(--slot4-dark-bg)] text-white">
+      <div className="mx-auto max-w-[1180px] px-4 py-14 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center justify-center gap-5 border-b border-white/12 pb-10">
+          <Link href="/contact" className="rounded-[0.35rem] bg-[var(--slot4-accent-fill)] px-8 py-4 text-sm font-semibold transition hover:bg-[var(--slot4-accent)]">Submit Press Release</Link>
           </div>
+
+        <div className="grid gap-10 py-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="border-b border-white/25 pb-3 text-[10px] font-black uppercase tracking-[.22em] text-white/55">Explore</h3>
-            <div className="mt-4 grid gap-3">
-              <Link href="/search" className="group inline-flex items-center justify-between text-sm font-black uppercase tracking-[.08em] hover:text-[var(--slot4-accent)]">Archive<ArrowRight className="h-4 w-4" /></Link>
+            <h3 className="text-base font-semibold">{SITE_CONFIG.name}</h3>
+            <p className="mt-4 max-w-xs text-sm leading-7 text-white/65">
+              {globalContent.footer?.description || 'Media distribution, business visibility, and timely public-facing updates in one refined publication space.'}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-base font-semibold">Press Release Distribution</h3>
+            <div className="mt-4 grid gap-3 text-sm text-white/72">
+              <Link href="/signup" className="transition hover:text-white">Submit Press Release</Link>
+              <Link href="/search" className="transition hover:text-white">Distribution Archive</Link>
             </div>
           </div>
+
           <div>
-            <h3 className="border-b border-white/25 pb-3 text-[10px] font-black uppercase tracking-[.22em] text-white/55">Publication</h3>
-            <div className="mt-4 grid gap-3">
-              <Link href="/about" className="text-sm font-black uppercase tracking-[.08em] hover:text-[var(--slot4-accent)]">About</Link>
-              <Link href="/contact" className="text-sm font-black uppercase tracking-[.08em] hover:text-[var(--slot4-accent)]">Contact</Link>
-              {session ? <><Link href="/create" className="text-sm font-black uppercase tracking-[.08em] hover:text-[var(--slot4-accent)]">Publish</Link><button onClick={logout} className="text-left text-sm font-black uppercase tracking-[.08em] hover:text-[var(--slot4-accent)]">Logout</button></> : <><Link href="/login" className="text-sm font-black uppercase tracking-[.08em] hover:text-[var(--slot4-accent)]">Log in</Link><Link href="/signup" className="text-sm font-black uppercase tracking-[.08em] hover:text-[var(--slot4-accent)]">Subscribe</Link></>}
+            <h3 className="text-base font-semibold">Account</h3>
+            <div className="mt-4 grid gap-3 text-sm text-white/72">
+              {session ? (
+                <>
+                  <Link href="/create" className="transition hover:text-white">Open Publisher Desk</Link>
+                  <button type="button" onClick={logout} className="text-left transition hover:text-white">Sign Out</button>
+                </>
+              ) : (
+                <>
+                  <Link href="/signup" className="transition hover:text-white">Create Free Account</Link>
+                   </>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-base font-semibold">Resources</h3>
+            <div className="mt-4 grid gap-3 text-sm text-white/72">
+              <Link href="/contact" className="transition hover:text-white">Contact</Link>
+              <Link href="/about" className="transition hover:text-white">About</Link>
             </div>
           </div>
         </div>
+
+        <div className="flex flex-col gap-3 border-t border-white/12 pt-8 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {year} {SITE_CONFIG.name}. Media distribution and public information.</p>
+              
+        </div>
       </div>
-      <div className="border-t border-white/20 px-4 py-5 text-center text-[10px] font-black uppercase tracking-[.18em] text-white/45">© {year} {SITE_CONFIG.name}. Independent media and public information.</div>
     </footer>
   )
 }
