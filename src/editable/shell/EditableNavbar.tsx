@@ -12,8 +12,8 @@ const primaryLinks = [
 ]
 
 const utilityLinks = [
-  { label: 'Join Now', href: '/signup' },
-  { label: 'Sign In', href: '/login' },
+  { label: '', href: '/signup' },
+  { label: '', href: '/login' },
 ]
 
 
